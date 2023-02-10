@@ -9,23 +9,24 @@ import androidx.room.Room;
 import com.moises.task_list.functions.Functions;
 import com.moises.task_list.connection.Database;
 import com.moises.task_list.model.Task;
-import com.moises.task_list.view.AddTaskView;
+import com.moises.task_list.view.ViewFunctions;
 
 import java.util.Calendar;
 
 //create new Task, Add class in AddTaskActivity [PRESENTER]
 public class AddTask implements Functions.createTask, Functions.SendNotify {
     private final Task task; //model
-    private final AddTaskView addTaskView; //view - interface
+    private final ViewFunctions.AddTaskView addTaskView; //view - interface
     private final Database database;
     private final Context context;
 
-    public AddTask(Context context, AddTaskView addTaskView) {
+    public AddTask(Context context, ViewFunctions.AddTaskView addTaskView) {
         this.task = new Task();
         this.addTaskView = addTaskView;
         this.context =context;
         database = Room.databaseBuilder(context, Database.class, "to-do").build();
     }
+
 
     @Override
     public void create(String title, String description, Calendar dateNotify) {
@@ -43,7 +44,7 @@ public class AddTask implements Functions.createTask, Functions.SendNotify {
                         addTaskView.success();
                         addTaskView.activityTransition();
                     });
-                    Log.i("ROOM SAVE: ", database.taskDAO().getAll().get(task.getId()).getTitle());
+                    Log.i("ROOM SAVE: ", "Success");
                 }).start();
             }
         } catch (Exception e) {

@@ -13,14 +13,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import com.moises.task_list.R;
 import com.moises.task_list.presenter.AddTask;
 
 import java.util.Calendar;
 
-public class AddTaskActivity extends AppCompatActivity implements AddTaskView {
+public class AddTaskActivity extends AppCompatActivity implements ViewFunctions.AddTaskView {
 
     private AddTask addTask;
 
@@ -40,7 +39,6 @@ public class AddTaskActivity extends AppCompatActivity implements AddTaskView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         initComponents();
 
         addTask = new AddTask(this, this);
@@ -86,7 +84,7 @@ public class AddTaskActivity extends AppCompatActivity implements AddTaskView {
             new Handler().postDelayed(() -> {
                 progressBar.setVisibility(View.INVISIBLE);
                 addTask.create(title.getText().toString(), description.getText().toString(), calendar);
-            },4000);
+            }, 4000);
         });
     }
 
@@ -112,7 +110,7 @@ public class AddTaskActivity extends AppCompatActivity implements AddTaskView {
     }
 
     //components instance
-    protected void initComponents() {
+    private void initComponents() {
         this.title = findViewById(R.id.et_title);
         this.description = findViewById(R.id.et_description);
         this.closeActivity = findViewById(R.id.img_close);

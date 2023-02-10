@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Functions {
 
-    //send notify
+    //send notify TO-DO
     @FunctionalInterface
     interface SendNotify{
         void sendNotify();

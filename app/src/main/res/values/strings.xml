@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">to-do</string>
+    <string name="empty_list_text">estamos sem tarefas シ</string>
+    <string name="todo">TODO</string>
 </resources>
