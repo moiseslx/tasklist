@@ -1,2 +1,2 @@
 # tasklist
-App to create task notifications
+App to create task (TO-DO)
